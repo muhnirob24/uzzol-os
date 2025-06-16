@@ -1,3 +1,42 @@
+# 📱 Android Forensic Report
+
+**SIM:** 01737776956  
+**Email:** uzzolhassan38@gmail.com  
+**Time:** Mon Jun 16 21:22:54 +06 2025
+
+---
+
+## 🔐 SIM Info
+```json
+{
+  "data_enabled": "false",
+  "data_activity": "none",
+  "data_state": "disconnected",
+  "device_id": null,
+  "device_software_version": "78",
+  "phone_count": 2,
+  "phone_type": "gsm",
+  "network_operator": "47001",
+  "network_operator_name": "Grameenphone",
+  "network_country_iso": "bd",
+  "network_type": "lte",
+  "network_roaming": false,
+  "sim_country_iso": "bd",
+  "sim_operator": "47001",
+  "sim_operator_name": "Grameenphone",
+  "sim_serial_number": null,
+  "sim_subscriber_id": null,
+  "sim_state": "ready"
+}
+```
+
+## ☎️ Call Log
+```json
+
+```
+
+## 🖥️ System Info
+```
 Linux localhost 6.6.30-android15-8-g94c1a24cabd5-ab12293704-4k #1 SMP PREEMPT Thu Aug 29 05:01:15 UTC 2024 aarch64 Android
 Filesystem                         Size Used Avail Use% Mounted on
 /dev/block/dm-9                    852M 852M     0 100% /
@@ -91,3 +130,99 @@ overlay                            546M 546M     0 100% /system/etc/permissions
  29246 u0_a304      10 -10  10G 4.3M 3.6M S  0.0   0.0 4
  29222 u0_a304      10 -10  10G 4.4M 3.6M S  0.0   0.0 1
  12319 u0_a304      10 -10  10G 4.0M 3.5M S  0.0   0.0 0[?25h[0m[999H[K[?25h[?25h[0m[999H[K
+```
+
+## 🌐 Network + Ports
+```
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+Starting Nmap 7.97 ( https://nmap.org ) at 2025-06-16 21:21 +0600
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0019s latency).
+Other addresses for localhost (not scanned): ::1
+All 1000 scanned ports on localhost (127.0.0.1) are in ignored states.
+Not shown: 1000 closed tcp ports (conn-refused)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.95 seconds
+```
+
+## 🔋 Battery
+```json
+{
+  "present": true,
+  "technology": "Li-poly",
+  "health": "GOOD",
+  "plugged": "UNPLUGGED",
+  "status": "DISCHARGING",
+  "temperature": 37.0,
+  "voltage": 3683,
+  "current": -570700,
+  "current_average": -592000,
+  "percentage": 16,
+  "level": 16,
+  "scale": 100,
+  "charge_counter": 788,
+  "energy": null,
+  "cycle": 2
+}
+```
+
+## 📶 WiFi
+```json
+{
+  "API_ERROR": "Location needs to be enabled on the device"
+}
+```
+
+## 📍 Location
+```json
+
+```
+
+## 💀 Miner Detection
+```
+
+```
+
+## 🔍 VPN / DNS Leak
+```json
+{"ip":"37.111.243.5","country":"Bangladesh","city":"Dhaka","longitude":90.3657,"latitude":23.7729,"mullvad_exit_ip":false,"blacklisted":{"blacklisted":false,"results":[]},"organization":"GrameenPhone Ltd."}
+```
+
+## ⚠️ Malicious IP Ping
+```
+[*] 45.9.148.35
+PING 45.9.148.35 (45.9.148.35) 56(84) bytes of data.
+
+--- 45.9.148.35 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2046ms
+
+---
+[*] 185.38.175.132
+PING 185.38.175.132 (185.38.175.132) 56(84) bytes of data.
+
+--- 185.38.175.132 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2038ms
+
+---
+[*] 185.225.69.69
+PING 185.225.69.69 (185.225.69.69) 56(84) bytes of data.
+64 bytes from 185.225.69.69: icmp_seq=1 ttl=40 time=319 ms
+64 bytes from 185.225.69.69: icmp_seq=2 ttl=40 time=357 ms
+64 bytes from 185.225.69.69: icmp_seq=3 ttl=40 time=273 ms
+
+--- 185.225.69.69 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2001ms
+rtt min/avg/max/mdev = 273.982/316.925/357.690/34.208 ms
+---
+```
+
+## 🧾 Metadata
+```
+SIM: 01737776956
+Email: uzzolhassan38@gmail.com
+Mon Jun 16 21:22:54 +06 2025
+u0_a304
+```
+

@@ -2,23 +2,23 @@
 PING 45.9.148.35 (45.9.148.35) 56(84) bytes of data.
 
 --- 45.9.148.35 ping statistics ---
-3 packets transmitted, 0 received, 100% packet loss, time 2049ms
+3 packets transmitted, 0 received, 100% packet loss, time 2046ms
 
 ---
 [*] 185.38.175.132
 PING 185.38.175.132 (185.38.175.132) 56(84) bytes of data.
 
 --- 185.38.175.132 ping statistics ---
-3 packets transmitted, 0 received, 100% packet loss, time 2054ms
+3 packets transmitted, 0 received, 100% packet loss, time 2038ms
 
 ---
 [*] 185.225.69.69
 PING 185.225.69.69 (185.225.69.69) 56(84) bytes of data.
-64 bytes from 185.225.69.69: icmp_seq=1 ttl=49 time=330 ms
-64 bytes from 185.225.69.69: icmp_seq=2 ttl=49 time=271 ms
-64 bytes from 185.225.69.69: icmp_seq=3 ttl=49 time=293 ms
+64 bytes from 185.225.69.69: icmp_seq=1 ttl=40 time=319 ms
+64 bytes from 185.225.69.69: icmp_seq=2 ttl=40 time=357 ms
+64 bytes from 185.225.69.69: icmp_seq=3 ttl=40 time=273 ms
 
 --- 185.225.69.69 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2001ms
-rtt min/avg/max/mdev = 271.734/298.549/330.647/24.343 ms
+rtt min/avg/max/mdev = 273.982/316.925/357.690/34.208 ms
 ---

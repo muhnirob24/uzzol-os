@@ -1,3 +1,20 @@
 {
-  "error": "Please grant the following permission to use this command: android.permission.READ_PHONE_STATE"
+  "data_enabled": "false",
+  "data_activity": "none",
+  "data_state": "disconnected",
+  "device_id": null,
+  "device_software_version": "78",
+  "phone_count": 2,
+  "phone_type": "gsm",
+  "network_operator": "47001",
+  "network_operator_name": "Grameenphone",
+  "network_country_iso": "bd",
+  "network_type": "lte",
+  "network_roaming": false,
+  "sim_country_iso": "bd",
+  "sim_operator": "47001",
+  "sim_operator_name": "Grameenphone",
+  "sim_serial_number": null,
+  "sim_subscriber_id": null,
+  "sim_state": "ready"
 }
