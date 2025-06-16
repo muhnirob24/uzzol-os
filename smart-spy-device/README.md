@@ -1,13 +1,11 @@
-# smart-spy-device
+## 📁 smart-spy-device
 
-This folder contains the files and code related to the smart-spy-device part of the uzzol-os project.
+This directory is part of the **UZZOL OS** system, built by [MUH Nirob](mailto:uzzolhassan38@gmail.com).
 
-## Description
-(Write description here)
+> 📅 Last Updated: Mon Jun 16 18:23:01 +06 2025
 
-## Tools / Dependencies
-(List required software and tools here)
+### 🔍 Description:
+Raspberry/ESP32-based spying and audio tracking
 
-## Usage
-(Write usage instructions here)
+---
 

@@ -1,13 +1,11 @@
-# ebook
+## 📁 ebook
 
-This folder contains the files and code related to the ebook part of the uzzol-os project.
+This directory is part of the **UZZOL OS** system, built by [MUH Nirob](mailto:uzzolhassan38@gmail.com).
 
-## Description
-(Write description here)
+> 📅 Last Updated: Mon Jun 16 18:23:01 +06 2025
 
-## Tools / Dependencies
-(List required software and tools here)
+### 🔍 Description:
+Guides, books, PDF for learning & selling
 
-## Usage
-(Write usage instructions here)
+---
 

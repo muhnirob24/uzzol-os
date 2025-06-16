@@ -1,13 +1,6 @@
-# dashboard
+## 🌐 Localhost Dashboard
 
-This folder contains the files and code related to the dashboard part of the uzzol-os project.
+This dashboard shows live Forensic Email Log and Android Device Info Charts.
+Visit: [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
-## Description
-(Write description here)
-
-## Tools / Dependencies
-(List required software and tools here)
-
-## Usage
-(Write usage instructions here)
-
+> Maintained by MUH Nirob
