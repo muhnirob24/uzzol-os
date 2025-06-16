@@ -1,0 +1,8 @@
+node_modules/
+*.log
+*.tmp
+*.apk
+*.exe
+*.zip
+*.deb
+__pycache__/
