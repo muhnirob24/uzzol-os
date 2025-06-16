@@ -1,0 +1,30 @@
+name: 🛡️ Daily Auto Push Forensic Report
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at 00:00 UTC
+  workflow_dispatch:     # Manual trigger support
+
+jobs:
+  push-report:
+    name: "📤 Push Daily Forensic Report"
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ⬇️ Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: 🔧 Set up Git
+      run: |
+        git config user.name "MUH Nirob"
+        git config user.email "uzzolhassan38@gmail.com"
+
+    - name: 🧠 Update Date in Report
+      run: |
+        echo "## Daily Update: $(date -u)" >> forensic-reports/report.md
+
+    - name: 📤 Commit and Push Changes
+      run: |
+        git add forensic-reports/*
+        git commit -m "🗓️ Auto Update Report: $(date -u '+%Y-%m-%d')"
+        git push origin master
