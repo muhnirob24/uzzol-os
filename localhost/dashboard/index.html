@@ -1,8 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head><title>UZZOL OS Admin Dashboard</title></head>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Uzzol OS Smart Dashboard</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="js/chart.min.js"></script>
+<script src="js/device-graph.js" defer></script>
+</head>
 <body>
-<h1>Welcome to UZZOL OS Admin Panel</h1>
-<p>Status: Localhost UI Ready</p>
+<header><h1>Uzzol OS Smart Dashboard</h1></header>
+<nav>
+  <ul>
+    <li><a href="#">Device Status</a></li>
+    <li><a href="#">Forensic Reports</a></li>
+    <li><a href="#">Automation Logs</a></li>
+    <li><a href="#">Admin Panel</a></li>
+  </ul>
+</nav>
+<main>
+  <section id="device-info">
+    <h2>Device Info</h2>
+    <canvas id="deviceChart" width="600" height="300"></canvas>
+  </section>
+  <section id="forensic-report">
+    <h2>Latest Forensic Logs</h2>
+    <pre id="logContent">Loading logs...</pre>
+  </section>
+</main>
+<footer><small>© 2025 Uzzol OS | Powered by MUH Nirob</small></footer>
 </body>
 </html>
