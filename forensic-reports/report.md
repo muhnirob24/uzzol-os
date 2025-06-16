@@ -1,6 +1,6 @@
 # 🌐 Advanced Network Forensic Report
 
-**Generated on:** 2025-06-16 20:10:00
+**Generated on:** 2025-06-16 20:13:32
 
 ## 🌐 IP Address Info
 ```
@@ -31,14 +31,14 @@ wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 ## 📡 Ping Test (8.8.8.8)
 ```
 PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=113 time=141 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=113 time=56.3 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=113 time=56.5 ms
-64 bytes from 8.8.8.8: icmp_seq=4 ttl=113 time=57.4 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=113 time=114 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=113 time=56.2 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=113 time=63.0 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=113 time=143 ms
 
 --- 8.8.8.8 ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 3007ms
-rtt min/avg/max/mdev = 56.339/77.871/141.139/36.530 ms
+rtt min/avg/max/mdev = 56.229/94.414/143.657/36.332 ms
 ```
 
 ## 🆔 MAC Addresses
@@ -60,7 +60,7 @@ rtt min/avg/max/mdev = 56.339/77.871/141.139/36.530 ms
   "link_speed_mbps": 96,
   "mac_address": "02:00:00:00:00:00",
   "network_id": -1,
-  "rssi": -30,
+  "rssi": -35,
   "ssid": "<unknown ssid>",
   "ssid_hidden": false,
   "supplicant_state": "COMPLETED"
