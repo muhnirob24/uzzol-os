@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ubuntu Laptop ফরেনসিক ও সিকিউরিটি - উন্নত ধাপ</title>
+    <style>
+        body {
+            font-family: 'SolaimanLipi', Arial, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+            background: #fff;
+            color: #222;
+        }
+        h1, h2, h3 {
+            color: #0a4d8c;
+            margin-top: 2em;
+        }
+        pre {
+            background: #222;
+            color: #f8f8f2;
+            padding: 12px 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            margin: 10px 0 20px 0;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 1em;
+        }
+        th, td {
+            border: 1px solid #bbb;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        th {
+            background: #0a4d8c;
+            color: white;
+        }
+        .note {
+            background: #e2f1ff;
+            border-left: 5px solid #0a4d8c;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Ubuntu Laptop ফরেনসিক ও সিকিউরিটি: উন্নত ধাপ এবং টুলস</h1>
+
+<h2>৪. ফরেনসিক ল্যাব সেটআপের জন্য প্রয়োজনীয় টুলস</h2>
+<p>Ubuntu-তে ফরেনসিক, সিকিউরিটি মনিটরিং ও সিস্টেম কন্ট্রোলের জন্য নিচের টুলগুলো অত্যন্ত কার্যকরী:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>টুলের নাম</th>
+            <th>উদ্দেশ্য</th>
+            <th>ইনস্টলেশন কমান্ড</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>Autopsy</b></td>
+            <td>ডিজিটাল ফরেনসিক ইমেজ বিশ্লেষণ ও রিপোর্ট তৈরি</td>
+            <td><code>sudo apt install autopsy</code></td>
+        </tr>
+        <tr>
+            <td><b>Wireshark</b></td>
+            <td>নেটওয়ার্ক প্যাকেট ক্যাপচার ও বিশ্লেষণ</td>
+            <td><code>sudo apt install wireshark</code></td>
+        </tr>
+        <tr>
+            <td><b>Chkrootkit</b></td>
+            <td>রুটকিট ও ম্যালওয়্যার স্ক্যানিং</td>
+            <td><code>sudo apt install chkrootkit</code></td>
+        </tr>
+        <tr>
+            <td><b>Volatility</b></td>
+            <td>মেমোরি ফরেনসিক বিশ্লেষণ</td>
+            <td>ডাউনলোড ও কনফিগার (পাইথন ভিত্তিক)</td>
+        </tr>
+        <tr>
+            <td><b>Sysdig</b></td>
+            <td>লাইভ সিস্টেম মনিটরিং ও ট্রেসিং</td>
+            <td><code>sudo apt install sysdig</code></td>
+        </tr>
+        <tr>
+            <td><b>OSSEC</b></td>
+            <td>হোস্টবেজড IDS এবং লগ মনিটরিং</td>
+            <td>হাত দিয়ে ইনস্টল ও কনফিগারেশন প্রয়োজন</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>৫. ফরেনসিক ল্যাব অটোমেশন ও স্ক্রিপ্টিং</h2>
+<p>আপনার ল্যাব অটোমেশন সহজ করার জন্য bash অথবা Python স্ক্রিপ্ট ব্যবহার করতে পারেন যা নিয়মিত সিস্টেম স্টেট, লগ ফাইল, প্রসেস তালিকা, নেটওয়ার্ক কানেকশন সংগ্রহ করে।</p>
+
+<pre><code># bash script example: daily_system_report.sh
+
+#!/bin/bash
+echo "System Report - $(date)" > /home/uzzol/reports/system_report.txt
+echo "CPU Load:" >> /home/uzzol/reports/system_report.txt
+uptime >> /home/uzzol/reports/system_report.txt
+echo -e "\nMemory Usage:" >> /home/uzzol/reports/system_report.txt
+free -h >> /home/uzzol/reports/system_report.txt
+echo -e "\nTop 10 Memory consuming processes:" >> /home/uzzol/reports/system_report.txt
+ps aux --sort=-%mem | head -n 10 >> /home/uzzol/reports/system_report.txt
+echo -e "\nDisk Usage:" >> /home/uzzol/reports/system_report.txt
+df -h >> /home/uzzol/reports/system_report.txt
+echo -e "\nOpen Network Connections:" >> /home/uzzol/reports/system_report.txt
+ss -tulnp >> /home/uzzol/reports/system_report.txt
+</code></pre>
+
+<p>এই স্ক্রিপ্ট ক্রোনে যুক্ত করলে প্রতিদিন অটোমেটিক রিপোর্ট পাওয়া যাবে:</p>
+<pre><code>crontab -e
+# নিচের লাইনটি যোগ করুন প্রতিদিন রাত ১২ টায় রান করার জন্য
+0 0 * * * /home/uzzol/daily_system_report.sh
+</code></pre>
+
+<h2>৬. রিমোট মনিটরিং ও কন্ট্রোল</h2>
+<ul>
+    <li><b>Zabbix:</b> সম্পূর্ণ IT infrastructure মনিটরিং ড্যাশবোর্ড, অ্যাডভান্সড অ্যালার্ট ও অটোমেশন ফিচারসহ।</li>
+    <li><b>Netdata:</b> রিয়েল টাইম পারফরম্যান্স ও সিস্টেম স্ট্যাটাস দেখানোর জন্য।</li>
+    <li><b>Grafana + Prometheus:</b> কাস্টম ড্যাশবোর্ড তৈরি ও ডেটা ভিজুয়ালাইজেশনের জন্য।</li>
+</ul>
+
+<p>আপনি যেকোনো একটি প্যানেল সেটআপ করে আপনার Ubuntu ল্যাপটপ, Android ফোন, সার্ভার ইত্যাদির এক জায়গায় মনিটরিং করতে পারবেন।</p>
+
+<h2>৭. ফরেনসিক ও সিকিউরিটি শেখার পরবর্তী ধাপ</h2>
+<ul>
+    <li><b>Incident Response প্রক্রিয়া:</b> কিভাবে সাইবার আক্রমণ শনাক্ত, প্রতিরোধ এবং রিপোর্ট করবেন।</li>
+    <li><b>ম্যালওয়্যার অ্যানালাইসিস:</b> সন্দেহজনক ফাইল বিশ্লেষণ এবং বিপদ রোধ।</li>
+    <li><b>ফরেনসিক টুল কাস্টমাইজেশন:</b> আপনার প্রয়োজন অনুসারে স্ক্রিপ্ট, প্লাগইন বা মডিউল তৈরি।</li>
+    <li><b>ক্লাউড ফরেনসিক:</b> AWS, GCP, Azure এর লগ বিশ্লেষণ ও নিরাপত্তা।</li>
+    <li><b>নেটওয়ার্ক ফরেনসিক্স:</b> প্যাকেট ক্যাপচার, ইনট্রুশন ডিটেকশন ও ট্রাফিক বিশ্লেষণ।</li>
+</ul>
+
+<div class="note">
+<strong>উল্লেখ্য:</strong> ফরেনসিক ল্যাব সেটআপ এবং সিকিউরিটি প্র্যাকটিস একটি ধারাবাহিক ও গভীর শেখার বিষয়, নিয়মিত প্র্যাকটিস ও আপডেট থাকা প্রয়োজন। এই গাইড আপনাকে সঠিক পথ নির্দেশ করবে, কিন্তু বাস্তব প্রয়োগ ও অভিজ্ঞতা জরুরি। 
+</div>
+
+<footer>
+    Developed by আপনার নাম | &copy; ২০২৫
+</footer>
+
+</body>
+</html>

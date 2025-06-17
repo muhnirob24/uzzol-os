@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফরেনসিক ল্যাব সেটআপ গাইড</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0066cc;
+        }
+        pre {
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            padding: 15px;
+            overflow: auto;
+        }
+        code {
+            background-color: #e6e6e6;
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ফরেনসিক ল্যাব সেটআপ গাইড</h1>
+    <p>এই গাইডটি আপনার জন্য একটি পরিপূর্ণ ফরেনসিক ল্যাব সেটআপ করতে সহায়তা করবে, যেখানে আপনি Zabbix, Netdata এবং ELK Stack এর মতো শক্তিশালী টুলস ব্যবহার করে আপনার সিস্টেমের কার্যকলাপ মনিটর এবং বিশ্লেষণ করতে পারবেন।</p>
+
+    <h2>১. Zabbix: সিস্টেম মনিটরিং ও ফরেনসিক ড্যাশবোর্ড</h2>
+    <p>Zabbix একটি শক্তিশালী সিস্টেম মনিটরিং টুল যা সার্ভার, নেটওয়ার্ক এবং অন্যান্য সিস্টেমের কর্মক্ষমতা ট্র্যাক করতে সাহায্য করে।</p>
+
+    <h3>Zabbix ইনস্টলেশন:</h3>
+    <pre>
+    sudo apt update
+    sudo apt install zabbix-server-mysql zabbix-frontend-php zabbix-agent
+    </pre>
+
+    <h3>Zabbix Database Setup:</h3>
+    <pre>
+    sudo mysql -u root -p
+    CREATE DATABASE zabbix CHARACTER SET utf8 COLLATE utf8_bin;
+    GRANT ALL PRIVILEGES ON zabbix.* TO zabbix@localhost IDENTIFIED BY 'zabbix_password';
+    FLUSH PRIVILEGES;
+    EXIT;
+    </pre>
+
+    <h3>Zabbix Server Configuration:</h3>
+    <pre>
+    sudo nano /etc/zabbix/zabbix_server.conf
+    # Edit DBPassword=zabbix_password
+    </pre>
+
+    <h3>Zabbix Services Start:</h3>
+    <pre>
+    sudo systemctl start zabbix-server zabbix-agent apache2
+    sudo systemctl enable zabbix-server zabbix-agent apache2
+    </pre>
+
+    <h3>Zabbix Web Interface Access:</h3>
+    <p>Access Zabbix by visiting: <strong>http://<server-ip>/zabbix</strong></p>
+
+    <h2>২. Netdata: রিয়েল-টাইম সিস্টেম মনিটরিং</h2>
+    <p>Netdata একটি অত্যন্ত কার্যকরী রিয়েল-টাইম মনিটরিং টুল যা সিস্টেমের কার্যক্ষমতা, নেটওয়ার্ক এবং অন্যান্য মেট্রিক্স মনিটর করতে সহায়ক।</p>
+
+    <h3>Netdata ইনস্টলেশন:</h3>
+    <pre>
+    bash <(curl -Ss https://my-netdata.io/kickstart.sh)
+    </pre>
+
+    <h3>Netdata Dashboard Access:</h3>
+    <p>Access Netdata by visiting: <strong>http://<server-ip>:19999</strong></p>
+
+    <h2>৩. ELK Stack: লগ সংগ্রহ ও বিশ্লেষণ</h2>
+    <p>ELK Stack (Elasticsearch, Logstash, Kibana) একটি শক্তিশালী টুলস যা লগ সংগ্রহ, বিশ্লেষণ এবং ভিজ্যুয়ালাইজেশন করতে ব্যবহৃত হয়।</p>
+
+    <h3>ELK Stack ইনস্টলেশন:</h3>
+    <pre>
+    # Install Elasticsearch
+    sudo apt install apt-transport-https openjdk-11-jre
+    sudo wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+    sudo sh -c 'echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
+    sudo apt update
+    sudo apt install elasticsearch
+    </pre>
+
+    <h3>Logstash এবং Kibana ইনস্টলেশন:</h3>
+    <pre>
+    sudo apt install logstash kibana
+    </pre>
+
+    <h3>ELK Stack সেবা শুরু করা:</h3>
+    <pre>
+    sudo systemctl start elasticsearch
+    sudo systemctl start logstash
+    sudo systemctl start kibana
+    </pre>
+
+    <h3>Kibana Access:</h3>
+    <p>Access Kibana at: <strong>http://<server-ip>:5601</strong></p>
+
+    <h2>৪. Flask Web Interface (Custom Dashboard)</h2>
+    <p>Flask একটি Python ওয়েব ফ্রেমওয়ার্ক যা আপনাকে কাস্টম ড্যাশবোর্ড এবং ওয়েব ইন্টারফেস তৈরি করতে সহায়তা করবে।</p>
+
+    <h3>Flask ইনস্টলেশন:</h3>
+    <pre>
+    pip install flask
+    </pre>
+
+    <h3>Flask অ্যাপ তৈরি করা:</h3>
+    <pre>
+    from flask import Flask, render_template
+    app = Flask(__name__)
+
+    @app.route('/')
+    def home():
+        return render_template('index.html')
+
+    if __name__ == '__main__':
+        app.run(host='0.0.0.0', port=5000)
+    </pre>
+
+    <h3>Flask Web Interface Access:</h3>
+    <p>Access Flask App at: <strong>http://<server-ip>:5000</strong></p>
+
+    <h2>পরবর্তী পদক্ষেপ:</h2>
+    <ul>
+        <li>প্রতিটি টুল কনফিগার ও কাস্টমাইজ করুন যাতে আপনার বিশেষ প্রয়োজন অনুসারে এটি কাজ করে।</li>
+        <li>অন্যান্য নিরাপত্তা টুলস যেমন Suricata, OSSEC ইত্যাদি ইনস্টল করুন এবং কনফিগার করুন।</li>
+        <li>আপনার সিস্টেমে রিয়েল-টাইম মনিটরিং এবং ফরেনসিক অ্যালার্ট সিস্টেম তৈরি করুন।</li>
+        <li>এলকে স্ট্যাকের সাহায্যে লগ বিশ্লেষণ এবং ভিজ্যুয়ালাইজেশন চালু করুন।</li>
+        <li>Flask ওয়েব ইন্টারফেসে আপনার সমস্ত মনিটরিং টুলসকে একত্রিত করুন এবং একটি কাস্টম ড্যাশবোর্ড তৈরি করুন।</li>
+    </ul>
+
+    <p>এই গাইডটি আপনাকে একটি সম্পূর্ণ ফরেনসিক ল্যাব সেটআপ করতে সহায়তা করবে, যাতে আপনি আপনার সিস্টেম মনিটরিং এবং সিকিউরিটি এনালাইসিস আরও কার্যকরভাবে পরিচালনা করতে পারবেন।</p>
+</div>
+
+</body>
+</html>

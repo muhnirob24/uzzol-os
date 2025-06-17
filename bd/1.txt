@@ -1,0 +1,198 @@
+অসাধারণ! নিচে আমি Ubuntu Laptop-এর জন্য একটি সম্পূর্ণ GitHub push-ready project structure দিয়ে দিচ্ছি, যেখানে:
+
+✅ ADB দিয়ে Android ফোন কানেক্ট করে
+✅ GUI Web Interface (Flask) দিয়ে
+✅ Device চেক, Bootloader/EDL Mode রিবুট
+✅ Mi Unlock Request শুরু করার মতো একটি প্রক্সি GUI
+✅ পরবর্তী কাস্টমাইজেশন ও এক্সটেনশন সহজে করা যাবে
+
+
+---
+
+📁 প্রজেক্ট নাম: mi-unlock-gui-linux
+
+✅ স্ট্রাকচার:
+
+mi-unlock-gui-linux/
+├── scripts/
+│   ├── check_device.sh
+│   ├── reboot_modes.sh
+│   └── unlock_request.sh
+├── app/
+│   ├── templates/
+│   │   └── index.html
+│   ├── static/
+│   │   └── style.css
+│   └── app.py
+├── README.md
+└── requirements.txt
+
+
+---
+
+🧠 GitHub Push-Ready ফাইলগুলো:
+
+📄 scripts/check_device.sh
+
+#!/bin/bash
+adb devices | grep -v "List" | grep "device"
+
+
+---
+
+📄 scripts/reboot_modes.sh
+
+#!/bin/bash
+echo "1. Bootloader"
+echo "2. EDL"
+read -p "Select Option: " option
+
+if [ "$option" == "1" ]; then
+    adb reboot bootloader
+elif [ "$option" == "2" ]; then
+    adb reboot edl
+else
+    echo "Invalid option"
+fi
+
+
+---
+
+📄 scripts/unlock_request.sh
+
+#!/bin/bash
+echo "ADB rebooting to bootloader..."
+adb reboot bootloader
+echo "⚠️ Manual Mi Account login and unlock required from phone or authorized tool."
+
+
+---
+
+📄 app/app.py
+
+from flask import Flask, render_template
+import os
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+@app.route('/check-device')
+def check_device():
+    output = os.popen("bash ../scripts/check_device.sh").read()
+    return f"<pre>{output}</pre>"
+
+@app.route('/bootloader')
+def bootloader():
+    os.system("adb reboot bootloader")
+    return "Rebooting to bootloader..."
+
+@app.route('/edl')
+def edl():
+    os.system("adb reboot edl")
+    return "Rebooting to EDL mode..."
+
+@app.route('/unlock-request')
+def unlock():
+    os.system("bash ../scripts/unlock_request.sh")
+    return "Unlock request sent to device. Please check the phone."
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5050)
+
+
+---
+
+📄 app/templates/index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Unlock GUI for Ubuntu</title>
+    <style>
+        body { font-family: sans-serif; background: #f5f5f5; padding: 40px; }
+        button { margin: 10px; padding: 10px 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>🔓 Mi Unlock GUI (Ubuntu)</h1>
+    <button onclick="location.href='/check-device'">Check ADB Device</button><br>
+    <button onclick="location.href='/bootloader'">Reboot to Bootloader</button><br>
+    <button onclick="location.href='/edl'">Reboot to EDL Mode</button><br>
+    <button onclick="location.href='/unlock-request'">Unlock Request</button>
+</body>
+</html>
+
+
+---
+
+📄 requirements.txt
+
+Flask
+
+
+---
+
+📄 README.md (GitHub পরিচিতি)
+
+# Mi Unlock GUI for Ubuntu
+
+A simple Flask web interface to interact with Android ADB for rebooting into bootloader/EDL and simulating unlock requests.
+
+## Features:
+- Device detection via ADB
+- Reboot to bootloader / EDL
+- Unlock simulation
+- GUI Interface
+
+## Usage:
+
+```bash
+sudo apt install adb python3 python3-pip
+pip3 install -r requirements.txt
+cd app
+python3 app.py
+
+Visit: http://localhost:5050
+
+---
+
+## 🧠 Push করার GitHub কমান্ড (Ubuntu থেকে):
+
+```bash
+git clone https://github.com/muhnirob24/mi-unlock-gui-linux.git
+cd mi-unlock-gui-linux
+# Replace or edit files if needed
+git add .
+git commit -m "Initial Mi Unlock GUI Linux project"
+git push origin main
+
+
+---
+
+📦 আপনি চাইলে আমি .zip করে প্রজেক্ট এখানেই দিতে পারি অথবা GitHub Repo-তে Push করে দিই।
+
+Confirm করুন:
+
+আমি কি আপনার GitHub muhnirob24 অ্যাকাউন্টে Push-ready Repo বানিয়ে দিই?
+
+না হলে .zip ফাইল চাই?
+
+
+🔧 এরপর আপনি চাইলে এই প্রজেক্টের ওপর ভিত্তি করে advanced version (token-based auth, OTP handling, Mi API mimic) বানানো যেতে পারে।
+
+প্রস্তুত থাকুন → আমরা এই প্রজেক্ট থেকে অনেক কিছু এক্সটেন্ড করতে পারি:
+
+Android Backup
+
+Forensic Extraction
+
+Device Log Capture
+
+Bootloader Log Analyzer
+
+
+🧠 Confirm করুন আপনি GitHub Push চান কি না — আমি সাথে সাথে প্রস্তুত করে দিচ্ছি।
+

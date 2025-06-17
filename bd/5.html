@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ubuntu Laptop + Android Rootless Termux: ফরেনসিক, ডেভেলপমেন্ট ও সাইবার সিকিউরিটি রোডম্যাপ</title>
+<style>
+  body {
+    font-family: 'SolaimanLipi', Arial, sans-serif;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #f4f6f8;
+    color: #222;
+    line-height: 1.6;
+  }
+  h1, h2, h3 {
+    color: #2c3e50;
+    margin-top: 1.5em;
+  }
+  ul {
+    margin-left: 20px;
+  }
+  code {
+    background: #eee;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: monospace;
+  }
+  .section {
+    background: white;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
+  }
+  a {
+    color: #2980b9;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  th {
+    background: #3498db;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<h1>Ubuntu Laptop + Android Rootless Termux এর মাধ্যমে ফরেনসিক, ডেভেলপমেন্ট এবং সাইবার সিকিউরিটি এক্সপার্ট হওয়ার রোডম্যাপ</h1>
+
+<p>এই গাইডে দেওয়া হয়েছে কিভাবে আপনি <strong>Ubuntu Laptop</strong> থেকে <strong>Android rootless device</strong> (যেমন Termux) ব্যবহার করে একসাথে ফরেনসিক, ডেভেলপমেন্ট, এবং সাইবার সিকিউরিটি কার্যক্রম সম্পন্ন করবেন। বিশেষ করে, Android ডিভাইসের ডাটা এনালাইসিস, ডেভেলপমেন্ট পরিবেশ ও সিকিউরিটি টুলস নিয়ে বিস্তারিত আলোচনা থাকবে।</p>
+
+<div class="section">
+  <h2>১. প্রয়োজনীয় হার্ডওয়্যার ও সফটওয়্যার</h2>
+  <ul>
+    <li><strong>Ubuntu Laptop</strong> (18.04 বা পরবর্তী ভার্সন) - Linux Terminal, ADB, Fastboot, Python, Git, OpenSSH ইত্যাদি ইনস্টল থাকবে।</li>
+    <li><strong>Android Rootless Device</strong> - Termux অ্যাপ ইনস্টল করা থাকবে। Root না থাকা সত্ত্বেও বেশি কিছু কাজ করা যাবে।</li>
+    <li><strong>ADB (Android Debug Bridge)</strong> - USB অথবা Wi-Fi এর মাধ্যমে ডিভাইস কানেকশন এর জন্য।</li>
+    <li><strong>সিম কার্ড রিডার</strong> (ঐচ্ছিক) - ফোনের সিম তথ্য বিশ্লেষণের জন্য।</li>
+    <li><strong>USB OTG ক্যাবল</strong> (যদি প্রয়োজন হয়) ডাটা রিকভারির জন্য।</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>২. সফটওয়্যার টুলস ও লাইব্রেরি</h2>
+  <p>Ubuntu Laptop এবং Termux উভয়ে কাজ করার জন্য প্রয়োজনীয় সফটওয়্যার:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>সফটওয়্যার / টুল</th>
+        <th>Ubuntu ল্যাপটপ</th>
+        <th>Android Termux</th>
+        <th>বর্ণনা</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ADB (Android Debug Bridge)</td>
+        <td>sudo apt install adb</td>
+        <td>pkg install android-tools (adb), fastboot</td>
+        <td>ডিভাইস কানেকশন ও ফাইল এক্সচেঞ্জের জন্য।</td>
+      </tr>
+      <tr>
+        <td>Python 3 & Pip</td>
+        <td>sudo apt install python3 python3-pip</td>
+        <td>pkg install python</td>
+        <td>স্ক্রিপ্ট চালানো ও ফরেনসিক টুল ব্যবহার।</td>
+      </tr>
+      <tr>
+        <td>Git</td>
+        <td>sudo apt install git</td>
+        <td>pkg install git</td>
+        <td>কোড ও টুল ক্লোন করার জন্য।</td>
+      </tr>
+      <tr>
+        <td>Wireshark</td>
+        <td>sudo apt install wireshark</td>
+        <td>দ্রুত নেটওয়ার্ক ট্রাফিক বিশ্লেষণের জন্য (Termux limited)।</td>
+        <td>নেটওয়ার্ক ফরেনসিক ও প্যাকেট ক্যাপচার।</td>
+      </tr>
+      <tr>
+        <td>Volatility Framework</td>
+        <td>pip3 install volatility3</td>
+        <td>Termux এ সীমাবদ্ধ; সাধারনত Ubuntu তে ব্যবহার করা হয়</td>
+        <td>মেমোরি ফরেনসিক বিশ্লেষণ।</td>
+      </tr>
+      <tr>
+        <td>Binwalk</td>
+        <td>sudo apt install binwalk</td>
+        <td>pkg install binwalk</td>
+        <td>Firmware ও ডিভাইস ফাইল বিশ্লেষণের জন্য।</td>
+      </tr>
+      <tr>
+        <td>Autopsy</td>
+        <td>sudo apt install autopsy</td>
+        <td>নাই</td>
+        <td>ফরেনসিক ইমেজ বিশ্লেষণের জন্য GUI টুল।</td>
+      </tr>
+      <tr>
+        <td>rclone</td>
+        <td>curl https://rclone.org/install.sh | sudo bash</td>
+        <td>pkg install rclone</td>
+        <td>ক্লাউড স্টোরেজ ও ডিভাইস ফাইল ম্যানেজমেন্ট।</td>
+      </tr>
+      <tr>
+        <td>Hashdeep</td>
+        <td>sudo apt install hashdeep</td>
+        <td>নাই</td>
+        <td>ফাইল ইন্টেগ্রিটি চেক করার জন্য।</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>৩. পার্টিশন এবং ডাটা অ্যাক্সেস</h2>
+  <ul>
+    <li>Android rootless ডিভাইসে <code>/data</code> এবং <code>/sdcard</code> পার্টিশনে সীমিত অ্যাক্সেস পাওয়া যায়, Root না থাকলে সিস্টেম ফোল্ডার অ্যাক্সেস সীমাবদ্ধ।</li>
+    <li>ADB shell দিয়ে Termux থেকে ডাটা এক্সপোর্ট, লগ, ফাইল রিডিং সম্ভব।</li>
+    <li>ফাইল সিস্টেমে অ্যানালাইসিসের জন্য <code>adb pull</code> এবং <code>adb backup</code> ব্যবহার করতে পারেন।</li>
+    <li>SD কার্ড এবং Internal Storage থেকে ডাটা সংগ্রহ করা হয়।</li>
+    <li>ফোরেনসিক টুলস দিয়ে পার্টিশন ইমেজ তৈরি করতে পারেন (যেমন: <code>dd</code> কমান্ড)।</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>৪. ফরেনসিক প্রক্রিয়া (Step by Step)</h2>
+  <ol>
+    <li><strong>ADB ডিভাইস সংযোগঃ</strong>
+      <ul>
+        <li>USB বা Wi-Fi দিয়ে <code>adb devices</code> দিয়ে ডিভাইস চেক করুন।</li>
+      </ul>
+    </li>
+    <li><strong>ডাটা সংগ্রহঃ</strong>
+      <ul>
+        <li><code>adb pull /sdcard/</code> বা অন্যান্য ডিরেক্টরি থেকে তথ্য সংগ্রহ করুন।</li>
+        <li><code>adb backup</code> দিয়ে অ্যাপ ও ডাটা ব্যাকআপ নিন।</li>
+      </ul>
+    </li>
+    <li><strong>ফাইল এনালাইসিসঃ</strong>
+      <ul>
+        <li>Collected files Binwalk, Strings, Hexdump দিয়ে বিশ্লেষণ করুন।</li>
+        <li>Hashdeep দিয়ে ফাইল ইন্টেগ্রিটি যাচাই করুন।</li>
+      </ul>
+    </li>
+    <li><strong>মেমোরি ফরেনসিকঃ</strong>
+      <ul>
+        <li>Volatility দিয়ে স্মৃতি বিশ্লেষণ করতে পারবেন (উন্নত প্রয়োজনে)।</li>
+      </ul>
+    </li>
+    <li><strong>লগ বিশ্লেষণঃ</strong>
+      <ul>
+        <li>Android logcat লগ সংগ্রহ ও বিশ্লেষণ করুন।</li>
+      </ul>
+    </li>
+    <li><strong>ফরেনসিক রিপোর্ট তৈরি:</strong> Markdown বা PDF ফরম্যাটে ডকুমেন্টেশন তৈরি করুন।</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>৫. Android ডেভেলপমেন্ট সেটআপ (Ubuntu + Termux)</h2>
+  <ul>
+    <li>Ubuntu তে Android Studio ইনস্টল করুন (IDE + SDK)।</li>
+    <li>Termux থেকে Java Development Kit (OpenJDK) ব্যবহার করতে পারেন ছোটখাটো ডেভেলপমেন্টের জন্য।</li>
+    <li>ADB এর মাধ্যমে ডিভাইস ডিবাগিং চালান।</li>
+    <li>Git দিয়ে কোড ম্যানেজ করুন, GitHub অথবা অন্য VCS সার্ভিসে Push করুন।</li>
+    <li>React Native বা Flutter এর জন্য Node.js এবং অন্যান্য প্রয়োজনীয় টুলস ইনস্টল করুন।</li>
+    <li>Termux এ Python দিয়ে স্ক্রিপ্ট ও টুল ডেভেলপ করুন, যেমন অটোমেশন, লগ বিশ্লেষণ ইত্যাদি।</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>৬. সাইবার সিকিউরিটি ফরেনসিক এক্সপার্ট হওয়ার রোডম্যাপ</h2>
+  <ol>
+    <li><strong>মৌলিক জ্ঞান অর্জনঃ</strong> Linux, Networking, Android Architecture শিখুন।</li>
+    <li><strong>টুলস মাস্টারিঃ</strong> ADB, Wireshark, Volatility, Binwalk, Autopsy, Hashdeep, Metasploit শিখুন।</li>
+    <li><strong>প্র্যাকটিসঃ</strong> Capture The Flag (CTF), Vulnerability Analysis, Penetration Testing করুন।</li>
+    <li><strong>ফরেনসিক এনালাইসিসঃ</strong> Real Android Forensic Cases নিয়ে কাজ করুন, ইমেজিং ও রিপোর্টিং শিখুন।</li>
+    <li><strong>অটোমেশন এবং স্ক্রিপ্টিংঃ</strong> Python, Bash, Termux scripting দক্ষতা অর্জন করুন।</li>
+    <li><strong>সার্টিফিকেশনঃ</strong> OSCP, CEH, CHFI, GCFA ইত্যাদি সার্টিফাইড কোর্স করুন।</li>
+    <li><strong>নেটওয়ার্ক সিকিউরিটি এবং ম্যালওয়্যার এনালাইসিসঃ</strong> Deep dive করুন।</li>
+    <li><strong>নির্দিষ্ট Android Security:</strong> Android Security Best Practices, Reverse Engineering (apktool, JADX) শিখুন।</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>৭. গুরুত্বপূর্ণ কমান্ড ও রিসোর্স</h2>
+  <ul>
+    <li><code>adb devices</code> - সংযুক্ত ডিভাইস দেখুন</li>
+    <li><code>adb shell</code> - ডিভাইসের shell অ্যাক্সেস করুন</li>
+    <li><code>adb pull /path/on/device /path/on/pc</code> - ডিভাইস থেকে ফাইল ডাউনলোড করুন</li>
+    <li><code>adb logcat</code> - ডিভাইসের লগ দেখুন</li>
+    <li><code>rclone config</code> - ক্লাউড স্টোরেজ সেটআপ করুন</li>
+    <li><a href="https://github.com/google/android-forensics" target="_blank">Google Android Forensics GitHub</a></li>
+    <li><a href="https://termux.com/" target="_blank">Termux Official Site</a></li>
+    <li><a href="https://developer.android.com/studio" target="_blank">Android Studio Official</a></li>
+  </ul>
+</div>
+
+<footer style="text-align:center; margin-top:40px; font-size:0.9em; color:#555;">
+  &copy; ২০২৫ আপনার নাম | তৈরি করেছেন ChatGPT দ্বারা
+</footer>
+
+</body>
+</html>
