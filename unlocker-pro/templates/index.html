@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Unlocker Pro - Mi Bootloader Unlock</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+    <h1>Unlocker Pro - Mi Bootloader Unlock Tool</h1>
+    <button onclick="checkDevice()">Check Device Connection</button>
+    <p id="deviceStatus"></p>
+    <button onclick="startUnlock()">Start Unlock</button>
+    <pre id="output"></pre>
+
+<script>
+async function checkDevice() {
+    let res = await fetch('/check_device');
+    let data = await res.json();
+    if(data.status === 'connected'){
+        document.getElementById('deviceStatus').innerText = 'Device connected: ' + data.devices.join(', ');
+    } else if(data.status === 'no_device'){
+        document.getElementById('deviceStatus').innerText = 'No device connected.';
+    } else {
+        document.getElementById('deviceStatus').innerText = 'Error: ' + data.message;
+    }
+}
+
+async function startUnlock() {
+    document.getElementById('output').innerText = 'Unlocking... Please wait.';
+    let res = await fetch('/unlock', {method: 'POST'});
+    let data = await res.json();
+    if(data.status === 'started'){
+        document.getElementById('output').innerText = data.output;
+    } else {
+        document.getElementById('output').innerText = 'Error: ' + data.message;
+    }
+}
+</script>
+</body>
+</html>
