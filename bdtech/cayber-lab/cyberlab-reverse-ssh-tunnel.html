@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Android থেকে Ubuntu-তে Reverse SSH কানেকশন ও ফাইল ট্রান্সফার গাইড। সাইবার নিরাপত্তা, অফলাইন ডেটা শেয়ারিং এবং উন্নত ফরেনসিক ল্যাব গাইড।">
+  <meta name="keywords" content="Reverse SSH, Android to Ubuntu, File Transfer, Offline Access, Cyber Lab, Forensic Toolkit, Termux Security">
+  <meta name="author" content="MUH-Nirob">
+  <link rel="canonical" href="https://nirobtech.com/bdtech/cayber-lab/cyberlab-reverse-ssh-tunnel.html">
+  <title>Cyber Lab 2: Reverse SSH - Android → Ubuntu</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #001f3f;
+      color: #ffffff;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #2dd4bf;
+    }
+    pre {
+      background: #0a192f;
+      padding: 12px;
+      border-left: 5px solid #2dd4bf;
+      overflow-x: auto;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛡️ Cyber Lab 2: Reverse SSH (Android → Ubuntu)</h1>
+
+  <div class="section">
+    <p>এই গাইডটি Android থেকে Ubuntu ল্যাপটপে নিরাপদ Reverse SSH কানেকশন এবং ফাইল ট্রান্সফার করার জন্য।</p>
+    <p>💡 <strong>আগের ল্যাব:</strong> <a href="https://nirobtech.com/bdtech/cayber-lab/cyberlab-terminal-bridge.html" target="_blank">Cyber Lab 1: Terminal Bridge (Ubuntu ⇄ Android)</a></p>
+  </div>
+
+  <div class="section">
+    <h2>📱 Android Side (Termux)</h2>
+    <pre>
+pkg install openssh -y
+ssh-keygen
+scp -P 22 ~/.ssh/id_rsa.pub username@192.168.0.100:/home/username/.ssh/authorized_keys
+    </pre>
+    <p>এবার Android-এ Ubuntu তে Reverse SSH কানেকশন তৈরি করুন:</p>
+    <pre>
+ssh -R 2222:localhost:22 username@192.168.0.100
+    </pre>
+  </div>
+
+  <div class="section">
+    <h2>💻 Ubuntu Side (Access)</h2>
+    <p>Ubuntu-তে Android টার্মিনাল এক্সেস করার জন্য:</p>
+    <pre>
+ssh -p 2222 username@localhost
+    </pre>
+    <p>এভাবে Android টার্মিনাল Ubuntu থেকে এক্সেসযোগ্য হয়ে যাবে (উল্টো পথ)।</p>
+  </div>
+
+  <div class="section">
+    <h2>📂 ফাইল ট্রান্সফার টিপস (scp)</h2>
+    <p>Ubuntu → Android:</p>
+    <pre>scp file.txt username@android-ip:/data/data/com.termux/files/home/</pre>
+
+    <p>Android → Ubuntu:</p>
+    <pre>scp file.txt username@192.168.0.100:/home/username/Desktop/</pre>
+  </div>
+
+  <div class="section">
+    <h2>🔐 সিকিউরিটি টিপস</h2>
+    <ul>
+      <li>❗ SSH key দিয়ে লগইন করুন, পাসওয়ার্ড না</li>
+      <li>🔥 `ufw` দিয়ে SSH পোর্টগুলো সীমিত রাখুন</li>
+      <li>📶 কেবল নিজের Wi-Fi তেই ব্যবহার করুন</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📅 পরবর্তী Lab পরিকল্পনা</h2>
+    <ul>
+      <li><strong>Cyber Lab 3:</strong> Ubuntu + Android Netdata Monitoring Setup</li>
+      <li><strong>Cyber Lab 4:</strong> Offline Log Collector Automation</li>
+      <li><strong>Cyber Lab 5:</strong> Wi-Fi Sniffing Toolkit (Termux Only)</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p style="text-align:center; margin-top:50px;">
+      © 2025 MUH-Nirob | Cyber Liberation Journey | <a href="https://nirobtech.com">nirobtech.com</a>
+    </p>
+  </footer>
+
+</body>
+</html>

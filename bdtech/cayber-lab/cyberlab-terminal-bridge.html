@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>🧠 Cyber Lab: Ubuntu + Android টার্মিনাল সংযুক্ত</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d1b2a;
+      color: #e0e1dd;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #00d9ff;
+    }
+    pre {
+      background: #1e2a38;
+      padding: 10px;
+      border-left: 4px solid #00d9ff;
+      overflow-x: auto;
+    }
+    button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px 0;
+      border-radius: 6px;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    footer {
+      text-align: center;
+      color: #7a869a;
+      margin-top: 50px;
+    }
+    ul {
+      line-height: 1.7em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🚀 Cyber Lab 1: Ubuntu + Android Terminal Link</h1>
+
+<div class="section">
+  <p>এই Cyber Lab প্রজেক্টটি তৈরি করা হয়েছে যেন আপনি, আমি এবং আমাদের মতো ভাইয়েরা যারা একসময় সাইবার আক্রমণের শিকার হয়েছেন, তারা নতুনভাবে প্রযুক্তি দিয়ে নিজের জীবন গড়তে পারি।</p>
+
+  <p>আজ আমরা Ubuntu Laptop + Android Rootless (Termux) একসাথে যুক্ত করব একটা শক্তিশালী Developer Lab & Security Hub হিসেবে।</p>
+</div>
+
+<div class="section">
+  <h2>📱 Step 1: Android (Termux) প্রস্তুত করুন</h2>
+  <pre>
+pkg update && pkg upgrade -y
+pkg install openssh -y
+passwd       # Termux ইউজারের পাসওয়ার্ড দিন
+sshd         # SSH চালু করুন
+ifconfig     # IP খুঁজে বের করুন (যেমনঃ 192.168.0.105)
+  </pre>
+</div>
+
+<div class="section">
+  <h2>💻 Step 2: Ubuntu থেকে Android-এ সংযুক্ত হোন</h2>
+  <p>Ubuntu-তে একটি স্ক্রিপ্ট ফাইল বানান: <code>android-access.sh</code></p>
+  <pre>
+#!/bin/bash
+ANDROID_IP="192.168.0.105"    # Termux এর IP দিন
+PORT=8022
+USER="u0_a123"                # Termux এ 'whoami' দিয়ে দেখে নিন
+
+ssh -p $PORT $USER@$ANDROID_IP
+  </pre>
+  <p>এক্সিকিউটেবল করুন:</p>
+  <pre>chmod +x android-access.sh</pre>
+</div>
+
+<div class="section">
+  <h2>🌐 Step 3: HTML ইন্টারফেস + Python HTTP Server</h2>
+  <p>একটা ফাইল করুন <code>server.py</code>:</p>
+  <pre>
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import subprocess
+import urllib.parse
+
+class Handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path.startswith('/run'):
+            query = urllib.parse.urlparse(self.path).query
+            script = urllib.parse.parse_qs(query).get('script', [None])[0]
+            if script:
+                subprocess.Popen(['bash', script])
+                self.send_response(200)
+                self.end_headers()
+                self.wfile.write(f"Running script: {script}".encode())
+            else:
+                self.send_response(400)
+                self.end_headers()
+                self.wfile.write(b"No script specified.")
+
+server = HTTPServer(('localhost', 8080), Handler)
+print("Server running on http://localhost:8080")
+server.serve_forever()
+  </pre>
+  <p>সার্ভার চালান:</p>
+  <pre>python3 server.py</pre>
+</div>
+
+<div class="section">
+  <h2>🔘 Ubuntu → Android লগইন বাটন</h2>
+  <button onclick="runScript('android-access.sh')">SSH Login to Android (Termux)</button>
+</div>
+
+<script>
+  function runScript(scriptName) {
+    fetch(`http://localhost:8080/run?script=${scriptName}`)
+      .then(response => response.text())
+      .then(data => alert("✔️ " + data))
+      .catch(error => alert("❌ Error: " + error));
+  }
+</script>
+
+<div class="section">
+  <h2>📌 আগামি পোস্ট/ল্যাব লিস্ট (Roadmap)</h2>
+  <ul>
+    <li>Cyber Lab 2: Android → Ubuntu Reverse SSH & File Transfer</li>
+    <li>Cyber Lab 3: Netdata Security Monitoring (Ubuntu + Android Metrics)</li>
+    <li>Cyber Lab 4: Offline Log Collector Script (.sh for both sides)</li>
+    <li>Cyber Lab 5: Network Sniffing & Wi-Fi Scanner Tool (Termux-based)</li>
+    <li>Cyber Lab 6: GitHub Auto Push Pull from Android & Ubuntu</li>
+    <li>Cyber Lab 7: Blogger API + Google Search Console Integration</li>
+    <li>Cyber Lab 8: Forensic Toolkit Automation + Malware Trace</li>
+    <li>Cyber Lab 9: CPU Usage, Memory & Battery Report Automation</li>
+    <li>Cyber Lab 10: System Reboot Alert via Email/SMS (API)</li>
+  </ul>
+</div>
+
+<footer>
+  © 2025 MUH-Nirob | Rebuilding from the Ground | From Pain to Power
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্বয়ংক্রিয় ডেটা মার্কেটপ্লেস: একটি সম্পন্ন গাইড</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .step {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            border-left: 2px solid #007bff;
+        }
+        .note {
+            font-style: italic;
+            color: #777;
+        }
+        .warning {
+            color: red;
+            font-weight: bold;
+        }
+        .code {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        h2::before {
+            content: "§ ";
+            color: #007bff;
+        }
+        h3::before {
+            content: "- ";
+            color: #007bff;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>স্বয়ংক্রিয় ডেটা মার্কেটপ্লেস: একটি সম্পন্ন গাইড</h1>
+
+        <div class="section">
+            <h2>ভূমিকা</h2>
+            <p>এই গাইডটি আপনাকে একটি স্বয়ংক্রিয় ডেটা মার্কেটপ্লেস তৈরি করতে সাহায্য করবে, যেখানে IoT ডিভাইসগুলি ডেটা সরবরাহ করবে এবং সেই ডেটা টোকেনের মাধ্যমে লেনদেন করা হবে। এই সিস্টেমটি তৈরি করার উদ্দেশ্য হলো, যারা কাজ না করেও একটি সম্ভাব্য আয়ের উৎস তৈরি করতে চান তাদের জন্য একটি কাঠামো প্রদান করা। ব্যক্তিগত অভিজ্ঞতা থেকে জানা যায়, অনেক ডিভাইস অব্যবহৃত অবস্থায় থাকলেও সেগুলোকে কাজে লাগিয়ে একটি স্বনির্ভরশীল ইনকাম জেনারেট করা সম্ভব। এই প্রোজেক্টটি বিশেষভাবে নতুনদের জন্য তৈরি করা হয়েছে, যারা স্মার্ট কন্ট্রাক্ট এবং ক্রিপ্টোকারেন্সি সম্পর্কে ধারণা নিতে চান এবং একটি বাস্তব প্রোজেক্টের মাধ্যমে শিখতে চান।</p>
+            <p class="note">আপনার ব্যক্তিগত অভিজ্ঞতার উপর ভিত্তি করে, আপনি বুঝতে পেরেছেন কিভাবে আপনার ডিভাইসগুলি IoT এবং ব্লকচেইন প্রযুক্তির মাধ্যমে ডেটা আদান-প্রদান করছে এবং টোকেন জমা করছে। এই গাইডটি সেই ধারণাটিকে একটি স্বয়ংসম্পূর্ণ প্রোজেক্টে রূপ দেওয়ার জন্য তৈরি করা হয়েছে।</p>
+        </div>
+
+        <div class="section">
+            <h2>কোর ধারণা</h2>
+            <ul>
+                <li><strong>IoT (ইন্টারনেট অফ থিংস):</strong> ভৌত ডিভাইস, যানবাহন, ভবন এবং অন্যান্য আইটেম যা ইলেকট্রনিক্স, সফ্টওয়্যার, সেন্সর এবং নেটওয়ার্ক সংযোগের মাধ্যমে ডেটা সংগ্রহ এবং বিনিময় করতে সক্ষম।</li>
+                <li><strong>ব্লকচেইন প্রযুক্তি:</strong> একটি বিকেন্দ্রীভূত, বিতরণকৃত এবং অপরিবর্তনীয় ডিজিটাল লেজার যা একাধিক কম্পিউটারে লেনদেন রেকর্ড করে।</li>
+                <li><strong>ক্রিপ্টোকারেন্সি:</strong> ডিজিটাল বা ভার্চুয়াল মুদ্রা যা ক্রিপ্টোগ্রাফি দ্বারা সুরক্ষিত থাকে, যা জাল বা দ্বিগুণ ব্যয় করা প্রায় অসম্ভব করে তোলে।</li>
+                <li><strong>স্মার্ট কন্ট্রাক্ট:</strong> ব্লকচেইনের উপর সঞ্চিত কোডের স্বয়ংক্রিয়ভাবে কার্যকর হওয়া চুক্তি, যা পূর্বনির্ধারিত শর্ত পূরণ হলেই লেনদেন বা অন্যান্য ক্রিয়া সম্পাদন করে।</li>
+                <li><strong>টোকেন:</strong> একটি ডিজিটাল সম্পদ যা একটি নির্দিষ্ট ব্লকচেইনের উপর তৈরি করা হয় এবং একটি নির্দিষ্ট মান বা উপযোগিতা বহন করে।</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>প্রোজেক্ট রোডম্যাপ</h2>
+            <p>এই প্রোজেক্টটি বাস্তবায়ন করার জন্য নিম্নলিখিত ধাপগুলি অনুসরণ করুন:</p>
+
+            <div class="step">
+                <h3>ধাপ ১: স্মার্ট কন্ট্রাক্ট তৈরি করা</h3>
+                <ul>
+                    <li><strong>১.১: পরিবেশ স্থাপন:</strong> টার্মুক্সে (ঐচ্ছিক) `solc` ইনস্টল করুন অথবা Remix IDE ([<a href="https://remix.ethereum.org/">https://remix.ethereum.org/</a>](https://remix.ethereum.org/)) ব্যবহার করুন।</li>
+                    <li><strong>১.২: কন্ট্রাক্ট লেখা:</strong> Solidity-তে আপনার টোকেনের নিয়মাবলী সংজ্ঞায়িত করুন।</li>
+                    <li><strong>১.৩: কন্ট্রাক্ট কম্পাইল:</strong> `solc` বা Remix IDE ব্যবহার করে আপনার কন্ট্রাক্ট কম্পাইল করুন।</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>ধাপ ২: স্মার্ট কন্ট্রাক্ট ডিপ্লয় করা</h3>
+                <ul>
+                    <li><strong>২.১: নেটওয়ার্ক নির্বাচন:</strong> টেস্টনেট (Ropsten, Goerli) অথবা মেইননেট (ইথেরিয়াম) নির্বাচন করুন।</li>
+                    <li><strong>২.২: ওয়ালেট তৈরি:</strong> MetaMask ([<a href="https://metamask.io/">https://metamask.io/</a>](https://metamask.io/)) এর মতো ওয়ালেট তৈরি করুন এবং ফান্ডিং করুন।</li>
+                    <li><strong>২.৩: ডিপ্লয়মেন্ট:</strong> Remix IDE বা টার্মুক্সে `geth/hardhat` ব্যবহার করে কন্ট্রাক্ট ডিপ্লয় করুন।</li>
+                    <li><strong>২.৪: অ্যাড্রেস সংরক্ষণ:</strong> কন্ট্রাক্টের ঠিকানা নোট করুন।</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>ধাপ ৩: ওয়েবসাইট তৈরি করা</h3>
+                <ul>
+                    <li><strong>৩.১: কাঠামো তৈরি:</strong> `.sh` স্ক্রিপ্ট বা স্ট্যাটিক সাইট জেনারেটর ব্যবহার করে ওয়েবসাইটের কাঠামো তৈরি করুন।</li>
+                    <li><strong>৩.২: টোকেন তথ্য:</strong> টোকেনের বিবরণ প্রদর্শন করুন।</li>
+                    <li><strong>৩.৩: ওয়ালেট সংযোগ:</strong> MetaMask বা অন্যান্য ওয়ালেট সংযোগের ইন্টারফেস তৈরি করুন।</li>
+                    <li><strong>৩.৪: ট্রান্সফার ইন্টারফেস:</strong> টোকেন স্থানান্তরের জন্য ফর্ম তৈরি করুন।</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>ধাপ ৪: ওয়েবসাইটে স্মার্ট কন্ট্রাক্ট ইন্টিগ্রেশন</h3>
+                <ul>
+                    <li><strong>৪.১: লাইব্রেরি যোগ করুন:</strong> `web3.js` বা `ethers.js` লাইব্রেরি যোগ করুন।</li>
+                    <li><strong>৪.২: কন্ট্রাক্ট ইনস্ট্যান্স:</strong> কন্ট্রাক্টের ঠিকানা এবং ABI ব্যবহার করে একটি ইনস্ট্যান্স তৈরি করুন।</li>
+                    <li><strong>৪.৩: ফাংশন কল করুন:</strong> টোকেন ব্যালেন্স দেখা এবং স্থানান্তরের জন্য কোড লিখুন।</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>ধাপ ৫: ইনকাম জেনারেশন মেকানিজম</h3>
+                <ul>
+                    <li><strong>৫.১: ডেটা মার্কেটপ্লেস:</strong> IoT ডিভাইস থেকে ডেটা সংগ্রহ করে টোকেনের মাধ্যমে বিক্রি করুন।</li>
+                    <li><strong>৫.২: লেনদেন ফি:</strong> প্রতিটি ডেটা ক্রয়-বিক্রয়ের উপর একটি ছোট ফি ধার্য করুন।</li>
+                    <li><strong>৫.৩: প্রিমিয়াম অ্যাক্সেস:</strong> উন্নত ডেটা বা ফিচারের জন্য প্রিমিয়াম সাবস্ক্রিপশন চালু করুন।</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>ধাপ ৬: (ঐচ্ছিক) টোকেনকে রিয়েল মানিতে রূপান্তর</h3>
+                <ul>
+                    <li><strong>৬.১: এক্সচেঞ্জে লিস্টিং:</strong> আপনার টোকেনটিকে একটি ক্রিপ্টো এক্সচেঞ্জে তালিকাভুক্ত করার জন্য আবেদন করুন।</li>
+                    <li><strong>৬.২: লিকুইডিটি প্রদান:</strong> এক্সচেঞ্জে টোকেনের পর্যাপ্ত লিকুইডিটি নিশ্চিত করুন।</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>প্রয়োজনীয় ফাইল এবং ফোল্ডার</h2>
+            <p>আপনার প্রোজেক্টের জন্য একটি প্রস্তাবিত ফাইল এবং ফোল্ডার কাঠামো:</p>
+            <pre class="code">
+automated_data_marketplace/
+├── smart_contract/
+│   ├── contracts/
+│   │   └── SimpleToken.sol
+│   ├── migrations/
+│   ├── scripts/
+│   └── build/
+├── website/
+│   ├── index.html
+│   ├── about.html
+│   ├── js/
+│   │   └── app.js
+│   └── css/
+│       └── style.css
+├── data/
+└── documentation/
+            </pre>
+        </div>
+
+        <div class="section">
+            <h2>আরও শিখতে</h2>
+            <ul>
+                <li>Solidity Documentation: [<a href="https://docs.soliditylang.org/">https://docs.soliditylang.org/</a>](https://docs.soliditylang.org/)</li>
+                <li>Remix IDE: [<a href="https://remix.ethereum.org/">https://remix.ethereum.org/</a>](https://remix.ethereum.org/)</li>
+                <li>web3.js Documentation: [<a href="https://web3js.readthedocs.io/v1.3.4/">https://web3js.readthedocs.io/v1.3.4/</a>](https://web3js.readthedocs.io/v1.3.4/)</li>
+                <li>Ethers.js Documentation: [<a href="https://docs.ethers.io/v5/">https://docs.ethers.io/v5/</a>](https://docs.ethers.io/v5/)</li>
+                <li>Google Cloud IoT Core Documentation: [<a href="https://cloud.google.com/iot-core/docs">https://cloud.google.com/iot-core/docs</a>](https://cloud.google.com/iot-core/docs)</li>
+                <li>Google Cloud BigQuery Documentation: [<a href="https://cloud.google.com/bigquery/docs">https://cloud.google.com/bigquery/docs</a>](https://cloud.google.com/bigquery/docs)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>গুরুত্বপূর্ণ নোট</h2>
+            <p class="warning">ক্রিপ্টোকারেন্সি এবং ব্লকচেইন প্রযুক্তি অত্যন্ত পরিবর্তনশীল এবং ঝুঁকিপূর্ণ হতে পারে। এই প্রোজেক্টটি শেখা এবং ব্যক্তিগত ব্যবহারের জন্য তৈরি করা হচ্ছে। রিয়েল মানি লেনদেনের ক্ষেত্রে অতিরিক্ত সতর্কতা অবলম্বন করুন এবং নিজের ঝুঁকিতে বিনিয়োগ করুন। সাইবার নিরাপত্তা একটি গুরুত্বপূর্ণ বিষয়, তাই আপনার সিস্টেম এবং ওয়ালেটকে সুরক্ষিত রাখার জন্য যথাযথ ব্যবস্থা নিন।</p>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 আপনার নাম/প্রতিষ্ঠান</p>
+        </footer>
+    </div>
+</body>
+</html>
